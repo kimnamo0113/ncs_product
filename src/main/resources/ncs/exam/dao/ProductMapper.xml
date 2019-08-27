@@ -5,4 +5,18 @@
 	<select id="selectProductByAll" resultType="Product">
 		select * from product;
 	</select>
+	
+	<select id="selectProductByCode" parameterType="String" resultType="Product">
+		select * from product where product_code=#{code}
+	</select>
+	
+	<insert id="insertProduct">
+		INSERT INTO ncs_product.product
+		(product_code, product_name)
+		VALUES(#{productCode},#{productName});
+	</insert>
+	
+	
 </mapper>
+
+

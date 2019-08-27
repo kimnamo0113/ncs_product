@@ -6,6 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import ncs.exam.dao.ProductMapper;
+import ncs.exam.dao.ProductMapperImpl;
+import ncs.exam.dao.SaleMapper;
+import ncs.exam.dao.SaleMapperImpl;
+import ncs.exam.dto.Product;
+import ncs.exam.dto.Sale;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
@@ -16,19 +24,22 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public class FrameInputForm extends JFrame implements ActionListener {
+public class FrameInputForm extends JFrame implements ActionListener, KeyListener {
 
 	private JPanel contentPane;
 	private JTextField tfCode;
 	private JTextField tfPrice;
 	private JTextField tfCount;
 	private JTextField tfMargin;
-	private JTextField textField;
+	private JTextField tfName;
 	private JButton btnInput;
 	private JButton btnPrint1;
 	private JButton btnPrint2;
-
+	SaleMapper saleDao = new SaleMapperImpl();
+	ProductMapper proDao = new ProductMapperImpl();
 	/**
 	 * Launch the application.
 	 */
@@ -60,6 +71,7 @@ public class FrameInputForm extends JFrame implements ActionListener {
 		panel_5.add(lblCode);
 		
 		tfCode = new JTextField();
+		tfCode.addKeyListener(this);
 		panel_5.add(tfCode);
 		tfCode.setColumns(10);
 		
@@ -104,9 +116,9 @@ public class FrameInputForm extends JFrame implements ActionListener {
 		JLabel lblNewLabel = new JLabel("\uC81C\uD488\uBA85");
 		panel_4.add(lblNewLabel);
 		
-		textField = new JTextField();
-		panel_4.add(textField);
-		textField.setColumns(10);
+		tfName = new JTextField();
+		panel_4.add(tfName);
+		tfName.setColumns(10);
 		
 		JPanel panel_9 = new JPanel();
 		panel_3.add(panel_9);
@@ -140,11 +152,40 @@ public class FrameInputForm extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnInput(ActionEvent e) {
 		
-	}
-	protected void actionPerformedBtnPrint1(ActionEvent e) {
+		
+		saleDao.insertSale(getSaleTf());
 		
 	}
+	protected void actionPerformedBtnPrint1(ActionEvent e) {
+		FrameOutputSaleForm frame = new FrameOutputSaleForm();
+		frame.setVisible(true);
+	}
 	protected void actionPerformedBtnPrint2(ActionEvent e) {
+		FrameOutputMarginForm frame = new FrameOutputMarginForm();
+		frame.setVisible(true);
+	}
+	
+	public Sale getSaleTf() {
+		Sale sale = new Sale();
+		sale.setProductCode(tfCode.getText());
+		sale.setPrice(Integer.parseInt(tfPrice.getText()));
+		sale.setSaleCnt(Integer.parseInt(tfCount.getText()));
+		sale.setMarginrate(Integer.parseInt(tfMargin.getText()));
+		return sale;
+	}
+	public void clearTf() {
+		
+	}
+	public void keyPressed(KeyEvent e) {
+		if (e.getSource() == tfCode) {
+			keyPressedTfCode(e);
+		}
+	}
+	public void keyReleased(KeyEvent e) {
+	}
+	public void keyTyped(KeyEvent e) {
+	}
+	protected void keyPressedTfCode(KeyEvent e) {
 		
 	}
 }

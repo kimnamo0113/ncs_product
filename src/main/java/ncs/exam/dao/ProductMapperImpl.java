@@ -25,5 +25,12 @@ public class ProductMapperImpl implements ProductMapper {
 			return sqlSession.selectList(namespace + ".selectProductByAll");
 		}
 	}
+	
+	@Override
+	public Product selectProductByCode(String code) {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".selectProductByCode",code);
+		}
+	}
 
 }

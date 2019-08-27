@@ -14,6 +14,16 @@ public class SaleDetail {
 	
 	
 	
+	public SaleDetail(int salePrice, int addTax, int supplyPrice, int marginPrice) {
+		super();
+		this.salePrice = salePrice;
+		this.addTax = addTax;
+		this.supplyPrice = supplyPrice;
+		this.marginPrice = marginPrice;
+	}
+
+
+
 	public SaleDetail(int no, int salePrice, int addTax, int supplyPrice, int marginPrice) {
 		super();
 		this.no = no;
@@ -54,6 +64,14 @@ public class SaleDetail {
 	}
 	public void setMarginPrice(int marginPrice) {
 		this.marginPrice = marginPrice;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "SaleDetail [no=" + no + ", salePrice=" + salePrice + ", addTax=" + addTax + ", supplyPrice="
+				+ supplyPrice + ", marginPrice=" + marginPrice + "]";
 	}
 	
 	

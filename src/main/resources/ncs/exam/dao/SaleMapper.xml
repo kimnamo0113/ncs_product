@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ncs.exam.dao.SaleMapper">
+
+	<resultMap type="Sale" id="saleDetailExtend">
+		<result property="no" column="no" />
+		<result property="productCode" column="product_code" />
+		<result property="price" column="price" />
+		<result property="saleCnt" column="saleCnt" />
+		<result property="marginrate" column="marginrate" />
+		<association property="saleDetail" resultMap="ncs.exam.dao.SaleDetailMapper.basicSaleDetail"/>
+	</resultMap>
+	
+	<insert id="insertSale">
+		INSERT INTO ncs_product.sale
+		(product_code, price, saleCnt, marginrate)
+		VALUES(#{productCode}, #{price}, #{saleCnt}, #{marginrate});
+	</insert>
+	
+	<select id="selectByAll" resultType="Sale">
+		select * from sale;
+	</select>
+	
+	<select id="procPrice" statementType="STATEMENT" resultMap="saleDetailExtend">
+		{call proc_saledetail_orderby_saleprice()}
+	</select>
+</mapper>

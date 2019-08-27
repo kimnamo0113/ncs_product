@@ -8,41 +8,36 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import ncs.exam.AbstractTest;
-import ncs.exam.dto.Product;
+import ncs.exam.dto.Sale;
 
-public class ProductMapperTest extends AbstractTest{
-	private static ProductMapper productDao;
+public class SaleMapperTest extends AbstractTest{
+	private static SaleMapper saleDao;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		productDao=new ProductMapperImpl();
+		saleDao = new SaleMapperImpl();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		productDao=null;
+		saleDao=null;
 	}
 	
 	
-	
 	@Test
-	public void test01SelectProductByAll() {
+	public void test01SelectSaleByAll() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		List<Product> list = productDao.selectProductByAll();
-		System.out.println(list);
-		log.debug(list.toString());
+		List<Sale> list = saleDao.selectByAll();
+		
 		Assert.assertNotNull(list);
 	}
 	
 	@Test
-	public void test02SelectProductByCode() {
+	public void test02SelectSaleProc() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Product product = productDao.selectProductByCode("A002");
-		System.out.println(product);
-		log.debug(product.toString());
-		Assert.assertNotNull(product);
+		List<Sale> list = saleDao.procPrice();
+		log.debug(list.toString());
+		Assert.assertNotNull(list);
 	}
 	
-	
-
 }

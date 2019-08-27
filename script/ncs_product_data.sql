@@ -125,7 +125,7 @@ $$
 CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_saledetail_orderby_saleprice`()
 begin
 	select
-	(select count(*)+1 from sale where price > s.price) as 순위,product_code 코드,product_name 제품명,price 가격,saleCnt 판매수량,d.sale_price 판매액,addTax 부가세액,supply_price 공급가액,marginrate 마진율,margin_price 마진액
+	(select count(*)+1 from sale where price > s.price),product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
 	from sale s join sale_detail d
 	using(no)
 	join product p using(product_code)
@@ -136,7 +136,7 @@ END$$
 DELIMITER ;
 
 call proc_saledetail_orderby_saleprice;
-
+(select count(*)+1 from sale where price > s.price) as 순위,product_code 코드,product_name 제품명,price 가격,saleCnt 판매수량,d.sale_price 판매액,addTax 부가세액,supply_price 공급가액,marginrate 마진율,margin_price
 -- 7
 
 DROP PROCEDURE IF EXISTS ncs_product.proc_saledetail_orderby_marginprice;

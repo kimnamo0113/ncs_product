@@ -19,7 +19,7 @@
    </Appenders>
    
    <Loggers>
-      <Logger name="kr.or.yi.hairshop" level="trace" additivity="false">
+      <Logger name="ncs.exam" level="trace" additivity="false">
          <AppenderRef ref="Console" />
          <AppenderRef ref="RollingFile_Daily" />
       </Logger>
