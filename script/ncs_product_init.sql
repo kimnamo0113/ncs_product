@@ -37,3 +37,138 @@ CREATE TABLE ncs_product.sale_detail (
 );
 
 set foreign_key_checks=1;
+
+grant all privileges 
+on ncs_product.* 
+to 'user_ncs_product'@'localhost'
+identified by 'rootroot';
+
+
+grant all privileges 
+on ncs_product.* 
+to 'user_ncs_product'@'%'
+identified by 'rootroot';
+
+use ncs_product;
+select * from product;
+select * from sale;
+select * from sale_detail;
+
+
+
+-- 3.
+delimiter $$
+drop trigger if exists tri_sale_after_insert_detail$$
+create trigger tri_sale_after_insert_detail
+after insert on sale
+for each row
+	begin
+		insert into sale_detail(no,sale_price,addTax,supply_price,margin_price) values
+		(new.no,
+		new.price*new.saleCnt,
+		ceiling(sale_price/11),
+		sale_price-addTax,
+		round(supply_price*new.marginRate/100)
+		);
+	end $$
+delimiter ;
+
+
+/**/
+
+-- 4
+
+delimiter $$
+drop trigger if exists tri_sale_after_update_detail$$
+create trigger tri_sale_after_update_detail
+after update on sale
+for each row
+	begin
+		update sale_detail set
+		no=new.no,
+		sale_price=new.price*new.saleCnt,
+		addTax=ceiling(sale_price/11),
+		supply_price=sale_price-addTax,
+		margin_price=round(supply_price*new.marginRate/100)
+		where no=old.no;
+	end $$
+delimiter ;
+
+
+
+-- 5
+
+delimiter $$
+drop trigger if exists tri_sale_after_delete_detail$$
+create trigger tri_sale_after_delete_detail
+after delete on sale
+for each row
+	begin
+		delete from sale_detail
+		where no=old.no;
+	end $$
+delimiter ;
+
+
+-- 6
+
+DROP PROCEDURE IF EXISTS ncs_product.proc_saledetail_orderby_saleprice;
+
+DELIMITER $$
+$$
+CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_saledetail_orderby_saleprice`()
+begin
+	select
+	(select count(*)+1 from sale where price > s.price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
+	from sale s join sale_detail d
+	using(no)
+	join product p using(product_code)
+	order by price desc
+	;
+
+END$$
+DELIMITER ;
+
+call proc_saledetail_orderby_saleprice;
+
+
+
+-- 7
+
+DROP PROCEDURE IF EXISTS ncs_product.proc_saledetail_orderby_marginprice;
+
+DELIMITER $$
+$$
+CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_saledetail_orderby_marginprice`()
+begin
+	select
+	(select count(*)+1 from sale where price > s.price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
+	from sale s join sale_detail d
+	using(no)
+	join product p using(product_code)
+	order by margin_price desc
+	;
+
+END$$
+DELIMITER ;
+
+call proc_saledetail_orderby_marginprice;
+
+
+-- 8
+
+DROP PROCEDURE IF EXISTS ncs_product.proc_sum;
+
+DELIMITER $$
+$$
+CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_sum`()
+begin
+	select sum(sale_price) 판매금액, sum(addTax) 부가세액, sum(supply_price) 공급가액, sum(margin_price) 마진액
+	from sale_detail d join sale s on s.no=d.no
+	;
+
+END$$
+DELIMITER ;
+
+select * from sale_detail d join sale s on s.no=d.no;
+call proc_sum;

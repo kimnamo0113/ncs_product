@@ -51,4 +51,11 @@ public class SaleMapperImpl implements SaleMapper {
 		}
 	}
 
+	@Override
+	public Sale procSum() {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectOne(namespace + ".procSum");
+		}
+	}
+
 }

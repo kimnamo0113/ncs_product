@@ -1,18 +1,3 @@
-grant all privileges 
-on ncs_product.* 
-to 'user_ncs_product'@'localhost'
-identified by 'rootroot';
-
-
-grant all privileges 
-on ncs_product.* 
-to 'user_ncs_product'@'%'
-identified by 'rootroot';
-
-use ncs_product;
-select * from product;
-select * from sale;
-select * from sale_detail;
 
 
 insert into ncs_product.product(product_code,product_name) values
@@ -24,6 +9,27 @@ insert into ncs_product.product(product_code,product_name) values
 ('B002','후르츠와인'),
 ('B003','팥빙수'),
 ('B004','아이스초코');
+
+
+
+
+
+insert into sale values
+('1','A001','4500',150,10),
+('2','A002','3800',140,15),
+('3','B001','5200',250,12),
+('4','B002','4300',110,11);
+
+
+
+delete from product;
+delete from sale;
+delete from sale_detail;
+select * from sale;
+select * from sale_detail;
+
+
+select * from sale s join sale_detail d using(no);
 
 
 -- 3.
@@ -45,24 +51,6 @@ delimiter ;
 
 
 /**/
-
-
-insert into sale values
-('1','A001','4500',150,10),
-('2','A002','3800',140,15),
-('3','B001','5200',250,12),
-('4','B002','4300',110,11);
-
-
-
-delete from product;
-delete from sale;
-delete from sale_detail;
-select * from sale;
-select * from sale_detail;
-
-
-select * from sale s join sale_detail d using(no);
 
 -- 4
 
@@ -138,7 +126,6 @@ DELIMITER ;
 call proc_saledetail_orderby_saleprice;
 
 
-(select count(*)+1 from sale where price > s.price) as 순위,product_code 코드,product_name 제품명,price 가격,saleCnt 판매수량,d.sale_price 판매액,addTax 부가세액,supply_price 공급가액,marginrate 마진율,margin_price
 -- 7
 
 DROP PROCEDURE IF EXISTS ncs_product.proc_saledetail_orderby_marginprice;
@@ -169,12 +156,10 @@ DELIMITER $$
 $$
 CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_sum`()
 begin
-	select sum(sale_price) 판매금액, sum(addTax) 부가세액, sum(supply_price) 공급가액, sum(margin_price) 마진액
-	from sale_detail d join sale s on s.no=d.no
-	;
-
+	select sum(s.price) price,sum(s.saleCnt) saleCnt, sum(addTax) addTax, sum(supply_price) supply_price, sum(sale_price) sale_price,sum(margin_price) margin_price
+	from sale_detail d join sale s on s.no=d.no;
 END$$
 DELIMITER ;
 
 select * from sale_detail d join sale s on s.no=d.no;
-call proc_sum;
+call proc_sum();

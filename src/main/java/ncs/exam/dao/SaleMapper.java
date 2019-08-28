@@ -9,4 +9,5 @@ public interface SaleMapper {
 	public List<Sale> selectByAll();
 	public List<Sale> procPrice();
 	public List<Sale> procMargin();
+	public Sale procSum();
 }

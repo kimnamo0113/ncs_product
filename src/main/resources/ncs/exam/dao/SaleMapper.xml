@@ -28,4 +28,9 @@
 	<select id="procMargin" statementType="STATEMENT" resultMap="saleDetailExtend">
 		call proc_saledetail_orderby_marginprice()
 	</select>
+	
+	
+	<select id="procSum" resultMap="saleDetailExtend">
+		call proc_sum()
+	</select>
 </mapper>

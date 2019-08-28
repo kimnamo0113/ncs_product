@@ -14,6 +14,7 @@ import javax.swing.RowSorter;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -23,6 +24,9 @@ import java.awt.GridLayout;
 
 public class OutPutPanelTable extends JFrame {
 	private JPanel contentPane;
+	
+	private DefaultTableModel model;
+	private final String[] columns = {"","","","","","","","","",""};
 	
 	protected JTable table;
 	protected List<Sale> itemList;
@@ -57,18 +61,30 @@ public class OutPutPanelTable extends JFrame {
 		panel_1.setLayout(new BorderLayout(0, 0));
 		
 		
-		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		
-		
-		table_1 = new JTable();
-		scrollPane_1.add(table_1);
-		
+		scrollPane_1.setPreferredSize(new Dimension(100, 30));
 		panel_1.add(scrollPane_1);
+		
+		model=new DefaultTableModel(null,columns);
+		table_1 = new JTable(model);
+		scrollPane_1.add(table_1);
+		scrollPane_1.setViewportView(table_1);
+		
 		
 	}
 	
-	protected void setItemList(List<Sale> itemList) {
+	protected void setSumColumn(Sale sale) {
+		columns[4]=sale.getSaleCnt()+"";
+		columns[5]=sale.getSaleDetail().getSupplyPrice()+"";
+		columns[6]=sale.getSaleDetail().getAddTax()+"";
+		columns[7]=sale.getSaleDetail().getSalePrice()+"";
+		columns[9]=sale.getSaleDetail().getMarginPrice()+"";
+		
+		model=new DefaultTableModel(null,columns);
+		
+		table_1.setModel(model);
+	}
+		protected void setItemList(List<Sale> itemList) {
 		this.itemList = itemList;
 	}
 	

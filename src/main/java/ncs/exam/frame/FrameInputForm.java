@@ -153,11 +153,13 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	protected void actionPerformedBtnInput(ActionEvent e) {
 		
 		saleDao.insertSale(getSaleTf());
-		
+		clearTf();
 	}
 	protected void actionPerformedBtnPrint1(ActionEvent e) {
 		OutPutPanelTable frame = new OutPutPanelTable();
 		frame.setItemList(saleDao.procPrice());
+		frame.setSumColumn(saleDao.procSum());
+		
 		frame.reloadData();
 		
 		frame.setVisible(true);
@@ -165,6 +167,8 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	protected void actionPerformedBtnPrint2(ActionEvent e) {
 		OutPutPanelTable frame = new OutPutPanelTable();
 		frame.setItemList(saleDao.procMargin());
+		frame.setSumColumn(saleDao.procSum());
+		
 		frame.reloadData();
 		
 		frame.setVisible(true);
@@ -181,8 +185,15 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 		return sale;
 	}
 	public void clearTf() {
-		
+		tfCode.setText("");
+		tfCount.setText("");
+		tfMargin.setText("");
+		tfName.setText("");
+		tfPrice.setText("");
 	}
+	
+	
+	
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == tfCode) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) { //enter event

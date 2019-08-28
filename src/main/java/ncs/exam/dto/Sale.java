@@ -84,7 +84,7 @@ public class Sale {
 //	private SaleDetail saleDetail;
 	public Object[] toArray() {
 		DecimalFormat df=new DecimalFormat("###,###");
-		return new Object[] { no,productCode,product.getProductName(),price,saleCnt,saleDetail.getSupplyPrice(),saleDetail.getAddTax(),price,marginrate,saleDetail.getMarginPrice()};
+		return new Object[] { no,productCode,product.getProductName(),price,saleCnt,saleDetail.getSupplyPrice(),saleDetail.getAddTax(),saleDetail.getSalePrice(),marginrate,saleDetail.getMarginPrice()};
 	}
 	
 }
