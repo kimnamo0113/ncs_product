@@ -15,7 +15,7 @@ public class SaleMapperTest extends AbstractTest{
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		saleDao = new SaleMapperImpl();
+		saleDao =SaleMapperImpl.getInstance();
 	}
 
 	@AfterClass
@@ -36,6 +36,14 @@ public class SaleMapperTest extends AbstractTest{
 	public void test02SelectSaleProc() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		List<Sale> list = saleDao.procPrice();
+		log.debug(list.toString());
+		Assert.assertNotNull(list);
+	}
+	
+	@Test
+	public void test03SelectMarginProc() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		List<Sale> list = saleDao.procMargin();
 		log.debug(list.toString());
 		Assert.assertNotNull(list);
 	}

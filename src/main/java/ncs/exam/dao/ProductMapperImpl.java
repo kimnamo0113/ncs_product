@@ -10,6 +10,16 @@ import ncs.exam.jdbc.MyBatisSqlSessionFactory;
 public class ProductMapperImpl implements ProductMapper {
 	private String namespace="ncs.exam.dao.ProductMapper";
 	
+	private static final ProductMapperImpl instance = new ProductMapperImpl();
+	
+	public static ProductMapperImpl getInstance() {
+		return instance;
+	}
+	
+	private ProductMapperImpl() {
+		super();
+	}
+
 	@Override
 	public int insertProduct(Product pro) {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){

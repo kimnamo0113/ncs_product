@@ -10,6 +10,8 @@ import ncs.exam.jdbc.MyBatisSqlSessionFactory;
 public class SaleDetailMapperImpl implements SaleDetailMapper {
 	private String namespace="ncs.exam.dao.SaleDetailMapper";
 	
+	
+	
 	@Override
 	public int insertSaleDetail(SaleDetail saleDetail) {
 		// TODO Auto-generated method stub

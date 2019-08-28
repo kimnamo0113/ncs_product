@@ -8,4 +8,5 @@ public interface SaleMapper {
 	public int insertSale(Sale sale);
 	public List<Sale> selectByAll();
 	public List<Sale> procPrice();
+	public List<Sale> procMargin();
 }

@@ -15,7 +15,7 @@ public class ProductMapperTest extends AbstractTest{
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		productDao=new ProductMapperImpl();
+		productDao=ProductMapperImpl.getInstance();
 	}
 
 	@AfterClass

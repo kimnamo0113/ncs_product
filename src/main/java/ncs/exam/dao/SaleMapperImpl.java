@@ -9,6 +9,18 @@ import ncs.exam.jdbc.MyBatisSqlSessionFactory;
 
 public class SaleMapperImpl implements SaleMapper {
 	private String namespace="ncs.exam.dao.SaleMapper";
+	
+	private static final SaleMapperImpl instance = new SaleMapperImpl();
+	
+	public static SaleMapperImpl getInstance() {
+		return instance;
+	}
+	
+	private SaleMapperImpl() {
+		
+	}
+	
+	
 	@Override
 	public int insertSale(Sale sale) {
 		try(SqlSession sqlSession=MyBatisSqlSessionFactory.openSession();){
@@ -29,6 +41,13 @@ public class SaleMapperImpl implements SaleMapper {
 	public List<Sale> procPrice() {
 		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
 			return sqlSession.selectList(namespace + ".procPrice");
+		}
+	}
+
+	@Override
+	public List<Sale> procMargin() {
+		try (SqlSession sqlSession = MyBatisSqlSessionFactory.openSession();) {
+			return sqlSession.selectList(namespace + ".procMargin");
 		}
 	}
 

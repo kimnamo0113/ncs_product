@@ -1,5 +1,6 @@
 package ncs.exam.dto;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Sale {
@@ -9,6 +10,16 @@ public class Sale {
 	private int saleCnt;
 	private int marginrate;
 	private SaleDetail saleDetail;
+	private Product product;
+	
+	
+	
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public Sale() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -58,13 +69,22 @@ public class Sale {
 	public void setSaleDetail(SaleDetail saleDetail) {
 		this.saleDetail = saleDetail;
 	}
-	@Override
+	
+	
+@Override
 	public String toString() {
 		return "Sale [no=" + no + ", productCode=" + productCode + ", price=" + price + ", saleCnt=" + saleCnt
-				+ ", marginrate=" + marginrate + ", saleDetail=" + saleDetail + "]";
+				+ ", marginrate=" + marginrate + ", saleDetail=" + saleDetail + ", product=" + product + "]";
 	}
-	
-	
-
+	//	private int no;
+//	private String productCode;
+//	private int price;
+//	private int saleCnt;
+//	private int marginrate;
+//	private SaleDetail saleDetail;
+	public Object[] toArray() {
+		DecimalFormat df=new DecimalFormat("###,###");
+		return new Object[] { no,productCode,product.getProductName(),price,saleCnt,saleDetail.getSupplyPrice(),saleDetail.getAddTax(),price,marginrate,saleDetail.getMarginPrice()};
+	}
 	
 }

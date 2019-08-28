@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ncs.exam.dao.ProductMapper">
 
+	<resultMap type="Product" id="basicProduct">
+		<result property="productCode" column="product_code" />
+		<result property="productName" column="product_name" />
+	</resultMap>
+
 	<select id="selectProductByAll" resultType="Product">
 		select * from product;
 	</select>

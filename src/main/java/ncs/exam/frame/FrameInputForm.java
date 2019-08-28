@@ -38,8 +38,8 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	private JButton btnInput;
 	private JButton btnPrint1;
 	private JButton btnPrint2;
-	SaleMapper saleDao = new SaleMapperImpl();
-	ProductMapper proDao = new ProductMapperImpl();
+	SaleMapper saleDao = SaleMapperImpl.getInstance();
+	ProductMapper proDao = ProductMapperImpl.getInstance();
 	/**
 	 * Launch the application.
 	 */
@@ -119,7 +119,7 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 		tfName = new JTextField();
 		panel_4.add(tfName);
 		tfName.setColumns(10);
-		
+		tfName.setEditable(false);
 		JPanel panel_9 = new JPanel();
 		panel_3.add(panel_9);
 		
@@ -152,18 +152,25 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	}
 	protected void actionPerformedBtnInput(ActionEvent e) {
 		
-		
 		saleDao.insertSale(getSaleTf());
 		
 	}
 	protected void actionPerformedBtnPrint1(ActionEvent e) {
-		FrameOutputSaleForm frame = new FrameOutputSaleForm();
+		OutPutPanelTable frame = new OutPutPanelTable();
+		frame.setItemList(saleDao.procPrice());
+		frame.reloadData();
+		
 		frame.setVisible(true);
 	}
 	protected void actionPerformedBtnPrint2(ActionEvent e) {
-		FrameOutputMarginForm frame = new FrameOutputMarginForm();
+		OutPutPanelTable frame = new OutPutPanelTable();
+		frame.setItemList(saleDao.procMargin());
+		frame.reloadData();
+		
 		frame.setVisible(true);
 	}
+	
+	
 	
 	public Sale getSaleTf() {
 		Sale sale = new Sale();
@@ -178,7 +185,10 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	}
 	public void keyPressed(KeyEvent e) {
 		if (e.getSource() == tfCode) {
-			keyPressedTfCode(e);
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) { //enter event
+				Product pro=proDao.selectProductByCode(tfCode.getText());
+				tfName.setText(pro.getProductName());
+			}
 		}
 	}
 	public void keyReleased(KeyEvent e) {

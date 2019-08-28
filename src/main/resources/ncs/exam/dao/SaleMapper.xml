@@ -9,6 +9,7 @@
 		<result property="saleCnt" column="saleCnt" />
 		<result property="marginrate" column="marginrate" />
 		<association property="saleDetail" resultMap="ncs.exam.dao.SaleDetailMapper.basicSaleDetail"/>
+		<association property="product" resultMap="ncs.exam.dao.ProductMapper.basicProduct" />
 	</resultMap>
 	
 	<insert id="insertSale">
@@ -22,6 +23,9 @@
 	</select>
 	
 	<select id="procPrice" statementType="STATEMENT" resultMap="saleDetailExtend">
-		{call proc_saledetail_orderby_saleprice()}
+		call proc_saledetail_orderby_saleprice()
+	</select>
+	<select id="procMargin" statementType="STATEMENT" resultMap="saleDetailExtend">
+		call proc_saledetail_orderby_marginprice()
 	</select>
 </mapper>
