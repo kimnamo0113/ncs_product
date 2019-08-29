@@ -119,11 +119,11 @@ $$
 CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_saledetail_orderby_saleprice`()
 begin
 	select
-	(select count(*)+1 from sale where price > s.price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
+	(select count(*)+1 from sale_detail where sale_price > d.sale_price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
 	from sale s join sale_detail d
 	using(no)
 	join product p using(product_code)
-	order by price desc
+	order by sale_price desc
 	;
 
 END$$
@@ -142,7 +142,7 @@ $$
 CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_saledetail_orderby_marginprice`()
 begin
 	select
-	(select count(*)+1 from sale where price > s.price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
+	(select count(*)+1 from sale_detail where margin_price > d.margin_price) no,product_code,product_name,price,saleCnt,d.sale_price,addTax,supply_price,marginrate,margin_price
 	from sale s join sale_detail d
 	using(no)
 	join product p using(product_code)
@@ -163,7 +163,7 @@ DELIMITER $$
 $$
 CREATE DEFINER=`user_ncs_product`@`localhost` PROCEDURE `ncs_product`.`proc_sum`()
 begin
-	select sum(sale_price) 판매금액, sum(addTax) 부가세액, sum(supply_price) 공급가액, sum(margin_price) 마진액
+	select sum(sale_price) sale_price, sum(addTax) addTax, sum(supply_price) supply_price, sum(margin_price) margin_price
 	from sale_detail d join sale s on s.no=d.no
 	;
 

@@ -5,11 +5,14 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import ncs.exam.AbstractTest;
 import ncs.exam.dto.Sale;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SaleMapperTest extends AbstractTest{
 	private static SaleMapper saleDao;
 	
@@ -48,4 +51,11 @@ public class SaleMapperTest extends AbstractTest{
 		Assert.assertNotNull(list);
 	}
 	
+	@Test
+	public void test04SelectSumProc() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Sale sale = saleDao.procSum();
+		log.debug(sale.toString());
+		Assert.assertNotNull(sale);
+	}
 }

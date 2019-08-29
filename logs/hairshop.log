@@ -1,597 +1,949 @@
-[DEBUG] [2019-08-27 18:25:59 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 18:25:59 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 18:25:59 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 18:25:59 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 18:25:59 오후] <==      Total: 1
-[DEBUG] [2019-08-27 18:25:59 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 18:25:59 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:25:59 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 18:25:59 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:25:59 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 18:25:59 오후] <==      Total: 8
-[DEBUG] [2019-08-27 18:25:59 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 18:25:59 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:25:59 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 18:25:59 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:25:59 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 18:25:59 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:25:59 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 18:25:59 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:25:59 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:25:59 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:25:59 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:25:59 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:25:59 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:25:59 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:25:59 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:25:59 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:25:59 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:25:59 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:25:59 오후] testOpenSession()
-[DEBUG] [2019-08-27 18:25:59 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@541427c
-[DEBUG] [2019-08-27 18:38:31 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 18:38:31 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 18:38:32 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 18:38:32 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 18:38:32 오후] <==      Total: 1
-[DEBUG] [2019-08-27 18:38:32 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 18:38:32 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:38:32 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 18:38:32 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:38:32 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 18:38:32 오후] <==      Total: 8
-[DEBUG] [2019-08-27 18:38:32 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 18:38:32 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:38:32 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 18:38:32 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:38:32 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 18:38:32 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:38:32 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 18:38:32 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:38:32 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:38:32 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:38:32 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:38:32 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:38:32 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:38:32 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:38:32 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:38:32 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:38:32 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:38:32 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:38:32 오후] testOpenSession()
-[DEBUG] [2019-08-27 18:38:32 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@172b3388
-[DEBUG] [2019-08-27 18:38:54 오후] ==>  Preparing: INSERT INTO ncs_product.product (product_code, product_name) VALUES(?,?); 
-[DEBUG] [2019-08-27 18:38:54 오후] ==> Parameters: A009(String), 나모(String)
-[DEBUG] [2019-08-27 18:38:54 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:44:30 오후] ==>  Preparing: INSERT INTO ncs_product.product (product_code, product_name) VALUES(?,?); 
-[DEBUG] [2019-08-27 18:44:30 오후] ==> Parameters: A009(String), 나모(String)
-[DEBUG] [2019-08-27 18:44:30 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:45:52 오후] ==>  Preparing: INSERT INTO ncs_product.product (product_code, product_name) VALUES(?,?); 
-[DEBUG] [2019-08-27 18:45:52 오후] ==> Parameters: A009(String), 나모(String)
-[DEBUG] [2019-08-27 18:45:52 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:45:52 오후] ==>  Preparing: INSERT INTO ncs_product.sale (product_code, price, saleCnt, marginrate) VALUES(?, ?, ?, ?); 
-[DEBUG] [2019-08-27 18:45:52 오후] ==> Parameters: A009(String), 1234(Integer), 123(Integer), 10(Integer)
-[DEBUG] [2019-08-27 18:45:52 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:49:02 오후] ==>  Preparing: INSERT INTO ncs_product.product (product_code, product_name) VALUES(?,?); 
-[DEBUG] [2019-08-27 18:49:02 오후] ==> Parameters: A009(String), 나모(String)
-[DEBUG] [2019-08-27 18:49:02 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:49:02 오후] ==>  Preparing: INSERT INTO ncs_product.sale (product_code, price, saleCnt, marginrate) VALUES(?, ?, ?, ?); 
-[DEBUG] [2019-08-27 18:49:02 오후] ==> Parameters: A009(String), 1234(Integer), 123(Integer), 10(Integer)
-[DEBUG] [2019-08-27 18:49:02 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:49:22 오후] ==>  Preparing: INSERT INTO ncs_product.product (product_code, product_name) VALUES(?,?); 
-[DEBUG] [2019-08-27 18:49:22 오후] ==> Parameters: A010(String), 나모2(String)
-[DEBUG] [2019-08-27 18:49:22 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:49:22 오후] ==>  Preparing: INSERT INTO ncs_product.sale (product_code, price, saleCnt, marginrate) VALUES(?, ?, ?, ?); 
-[DEBUG] [2019-08-27 18:49:22 오후] ==> Parameters: A010(String), 1235(Integer), 125(Integer), 10(Integer)
-[DEBUG] [2019-08-27 18:49:22 오후] <==    Updates: 1
-[DEBUG] [2019-08-27 18:56:02 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 18:56:02 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 18:56:02 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 18:56:02 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 18:56:02 오후] <==      Total: 1
-[DEBUG] [2019-08-27 18:56:02 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 18:56:02 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:56:02 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 18:56:02 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:02 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 18:56:02 오후] <==      Total: 8
-[DEBUG] [2019-08-27 18:56:02 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 18:56:02 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:56:02 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 18:56:02 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:02 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 18:56:02 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:02 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 18:56:02 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:56:02 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:56:02 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:56:02 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:02 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:56:02 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:56:02 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:56:02 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:02 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:56:02 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:56:02 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:02 오후] testOpenSession()
-[DEBUG] [2019-08-27 18:56:02 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@172b3388
-[DEBUG] [2019-08-27 18:56:18 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 18:56:18 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 18:56:18 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 18:56:18 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 18:56:18 오후] <==      Total: 1
-[DEBUG] [2019-08-27 18:56:18 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 18:56:18 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:56:18 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 18:56:18 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:18 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 18:56:18 오후] <==      Total: 8
-[DEBUG] [2019-08-27 18:56:18 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 18:56:18 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 18:56:18 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 18:56:18 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:18 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 18:56:18 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:18 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 18:56:18 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:56:18 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:56:18 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:56:18 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:18 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:56:18 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:56:18 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:56:18 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:18 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:56:18 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:56:18 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:18 오후] testOpenSession()
-[DEBUG] [2019-08-27 18:56:18 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@172b3388
-[DEBUG] [2019-08-27 18:56:37 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:56:37 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:56:37 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:56:37 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:56:37 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:56:37 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:56:37 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:56:37 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:56:37 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:56:37 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:56:37 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:57:09 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:57:09 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:57:09 오후] <==    Columns: 순위, 코드, 제품명, 가격, 판매수량, 판매액, 부가세액, 공급가액, 마진율, 마진액
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:57:09 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:57:09 오후] [null, null, null, null]
-[DEBUG] [2019-08-27 18:57:09 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:57:09 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:57:09 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:57:09 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:57:09 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:57:09 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:59:22 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:59:22 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:59:22 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 18:59:22 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:59:22 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:59:22 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:59:22 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:59:22 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:59:22 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=0, addTax=118182, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=0, addTax=61364, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=0, addTax=43000, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=0, addTax=48364, supplyPrice=0, marginPrice=0]]]
-[DEBUG] [2019-08-27 18:59:22 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:59:22 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:59:22 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:59:23 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:59:23 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:59:23 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:59:23 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:59:23 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:59:23 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:59:35 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 18:59:35 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 18:59:35 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 18:59:35 오후] <==      Total: 4
-[DEBUG] [2019-08-27 18:59:35 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=0, addTax=118182, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=0, addTax=61364, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=0, addTax=43000, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=0, addTax=48364, supplyPrice=0, marginPrice=0]]]
-[DEBUG] [2019-08-27 18:59:35 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 18:59:35 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 18:59:35 오후] ==> Parameters: 
-[TRACE] [2019-08-27 18:59:35 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 18:59:35 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 18:59:35 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:00:40 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:00:40 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:00:40 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:00:40 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:00:40 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=0, addTax=118182, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=0, addTax=61364, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=0, addTax=43000, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=0, addTax=48364, supplyPrice=0, marginPrice=0]]]
-[DEBUG] [2019-08-27 19:00:40 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:00:40 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:00:40 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:00:40 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:00:40 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:00:40 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:01:11 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:01:12 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:01:12 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:01:12 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:01:12 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=0, addTax=118182, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=0, addTax=61364, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=0, addTax=43000, supplyPrice=0, marginPrice=0]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=0, addTax=48364, supplyPrice=0, marginPrice=0]]]
-[DEBUG] [2019-08-27 19:01:12 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:01:12 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:01:12 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:01:12 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:01:12 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:01:12 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:04:55 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:04:56 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:04:56 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:04:56 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:04:56 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:04:56 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:04:56 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:04:56 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:04:56 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:04:56 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:04:56 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:06:41 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:06:41 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:06:41 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:06:41 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:06:41 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:06:41 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:06:41 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:06:41 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:06:41 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:06:41 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:06:41 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:08:15 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:08:15 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:08:15 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:08:15 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:08:15 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:08:15 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:08:15 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:08:15 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:08:15 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:08:15 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:08:15 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:08:30 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:08:30 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:08:30 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:08:30 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:08:30 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:08:30 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:08:30 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:08:30 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:08:30 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:08:30 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:08:30 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:09:10 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 19:09:11 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 19:09:11 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 19:09:11 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 19:09:11 오후] <==      Total: 1
-[DEBUG] [2019-08-27 19:09:11 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 19:09:11 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:09:11 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 19:09:11 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:09:11 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 19:09:11 오후] <==      Total: 8
-[DEBUG] [2019-08-27 19:09:11 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 19:09:11 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:09:11 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 19:09:11 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:09:11 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 19:09:11 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:09:11 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 19:09:11 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:09:11 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:09:11 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:09:11 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:09:11 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:09:11 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:09:11 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:09:11 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:09:11 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:09:11 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:09:11 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:09:11 오후] testOpenSession()
-[DEBUG] [2019-08-27 19:09:11 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@59d2713
-[DEBUG] [2019-08-27 19:09:48 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:09:49 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:09:49 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:09:49 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:09:49 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:09:49 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:09:49 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:09:49 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:09:49 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:09:49 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:09:49 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:07 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:10:07 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:10:07 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:10:07 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:07 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:10:07 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:10:07 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:10:07 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:10:07 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:10:07 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:10:07 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:43 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:10:44 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:10:44 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:10:44 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:44 오후] [Sale [no=0, productCode=null, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=null, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=null, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=null, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:10:44 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:10:44 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:10:44 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:10:44 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:10:44 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:44 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 19:10:44 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 19:10:44 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 19:10:44 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 19:10:44 오후] <==      Total: 1
-[DEBUG] [2019-08-27 19:10:44 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 19:10:44 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:10:44 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 19:10:44 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:10:44 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 19:10:44 오후] <==      Total: 8
-[DEBUG] [2019-08-27 19:10:44 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 19:10:44 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:10:44 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 19:10:44 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:10:44 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 19:10:44 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 19:10:44 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:10:44 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 19:10:44 오후] testOpenSession()
-[DEBUG] [2019-08-27 19:10:44 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@172b3388
-[DEBUG] [2019-08-27 19:11:55 오후] test02SelectProductByCode()
-[DEBUG] [2019-08-27 19:11:56 오후] ==>  Preparing: select * from product where product_code=? 
-[DEBUG] [2019-08-27 19:11:56 오후] ==> Parameters: A002(String)
-[TRACE] [2019-08-27 19:11:56 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: A002, 카푸치노
-[DEBUG] [2019-08-27 19:11:56 오후] <==      Total: 1
-[DEBUG] [2019-08-27 19:11:56 오후] Product [productCode=A002, productName=카푸치노]
-[DEBUG] [2019-08-27 19:11:56 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:11:56 오후] ==>  Preparing: select * from product; 
-[DEBUG] [2019-08-27 19:11:56 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:11:56 오후] <==    Columns: product_code, product_name
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: A001, 아메리카노
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: A002, 카푸치노
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: A003, 헤이즐넛
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: A004, 에스프레소
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: B001, 딸기쉐이크
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: B002, 후르츠와인
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: B003, 팥빙수
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: B004, 아이스초코
-[DEBUG] [2019-08-27 19:11:56 오후] <==      Total: 8
-[DEBUG] [2019-08-27 19:11:56 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
-[DEBUG] [2019-08-27 19:11:56 오후] test01SelectProductByAll()
-[DEBUG] [2019-08-27 19:11:56 오후] ==>  Preparing: select * from sale_detail; 
-[DEBUG] [2019-08-27 19:11:56 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:11:56 오후] <==    Columns: no, sale_price, addTax, supply_price, margin_price
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 1, 675000, 61364, 613636, 61364
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 2, 532000, 48364, 483636, 72545
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 3, 1300000, 118182, 1181818, 141818
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 4, 473000, 43000, 430000, 47300
-[DEBUG] [2019-08-27 19:11:56 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:11:56 오후] [SaleDetail [no=1, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], SaleDetail [no=3, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]]
-[DEBUG] [2019-08-27 19:11:56 오후] test02SelectSaleProc()
-[DEBUG] [2019-08-27 19:11:56 오후] ==>  Executing: {call proc_saledetail_orderby_saleprice()} 
-[TRACE] [2019-08-27 19:11:56 오후] <==    Columns: (select count(*)+1 from sale where price > s.price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
-[DEBUG] [2019-08-27 19:11:56 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:11:56 오후] [Sale [no=0, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=0, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818]], Sale [no=0, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=0, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364]], Sale [no=0, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=0, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300]], Sale [no=0, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=0, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545]]]
-[DEBUG] [2019-08-27 19:11:56 오후] test01SelectSaleByAll()
-[DEBUG] [2019-08-27 19:11:56 오후] ==>  Preparing: select * from sale; 
-[DEBUG] [2019-08-27 19:11:56 오후] ==> Parameters: 
-[TRACE] [2019-08-27 19:11:56 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 1, A001, 4500, 150, 10
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 2, A002, 3800, 140, 15
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 3, B001, 5200, 250, 12
-[TRACE] [2019-08-27 19:11:56 오후] <==        Row: 4, B002, 4300, 110, 11
-[DEBUG] [2019-08-27 19:11:56 오후] <==      Total: 4
-[DEBUG] [2019-08-27 19:11:56 오후] testOpenSession()
-[DEBUG] [2019-08-27 19:11:56 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@172b3388
+[DEBUG] [2019-08-29 15:45:05 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 15:45:05 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:45:05 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:45:05 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:45:05 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 15:45:05 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[DEBUG] [2019-08-29 15:45:05 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:45:05 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:45:05 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:45:05 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 15:45:05 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 15:45:05 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:45:05 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:45:08 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 15:45:08 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:45:08 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:45:08 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:45:08 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:45:08 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:45:08 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:45:08 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:45:08 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:45:08 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 15:45:08 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 15:45:08 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:45:08 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:45:12 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 15:45:12 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:45:12 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:45:12 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:45:12 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 15:45:12 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[DEBUG] [2019-08-29 15:45:12 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:45:12 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:45:12 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:45:12 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 15:45:12 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 15:45:12 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:45:12 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:45:23 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 15:45:23 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:45:23 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:45:23 오후] <==        Row: 4, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:45:23 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:45:23 오후] <==        Row: 3, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:45:23 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:45:23 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:45:23 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:45:23 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 15:45:23 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 15:45:23 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:45:23 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:51:54 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 15:51:54 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:51:54 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:51:54 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:51:54 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:51:54 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:51:54 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:51:54 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:51:54 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:51:54 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 15:51:54 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 15:51:54 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:51:54 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:54:02 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 15:54:02 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:54:02 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:54:02 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:54:02 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:54:02 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:54:02 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:54:02 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:54:02 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:54:02 오후] <==    Columns: count(s.no), price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 15:54:02 오후] <==        Row: 4, 17800, 650, 270910, 2709090, 2980000, 323027
+[DEBUG] [2019-08-29 15:54:02 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:54:02 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:54:31 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 15:54:31 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:54:31 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:54:31 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:54:31 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:54:31 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:54:31 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:54:31 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:54:31 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:54:31 오후] <==    Columns: count(s.no), price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 15:54:31 오후] <==        Row: 4, 17800, 650, 270910, 2709090, 2980000, 323027
+[DEBUG] [2019-08-29 15:54:31 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:54:31 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:55:04 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 15:55:04 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:55:04 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:55:04 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:55:04 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:55:04 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:55:04 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:55:04 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:55:04 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:55:04 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 15:55:04 오후] <==        Row: 4, 17800, 650, 270910, 2709090, 2980000, 323027
+[DEBUG] [2019-08-29 15:55:04 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:55:04 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 15:55:06 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 15:55:06 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 15:55:06 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 15:55:06 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 15:55:06 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 15:55:06 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 15:55:06 오후] <==      Total: 4
+[DEBUG] [2019-08-29 15:55:06 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 15:55:06 오후] ==> Parameters: 
+[TRACE] [2019-08-29 15:55:06 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 15:55:06 오후] <==        Row: 4, 17800, 650, 270910, 2709090, 2980000, 323027
+[DEBUG] [2019-08-29 15:55:06 오후] <==      Total: 1
+[DEBUG] [2019-08-29 15:55:06 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:06:27 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 16:06:27 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 16:06:27 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 16:06:27 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 16:06:27 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:06:27 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 16:06:27 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 16:06:27 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 16:06:27 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:06:27 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 16:06:27 오후] <==      Total: 8
+[DEBUG] [2019-08-29 16:06:27 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 16:06:27 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:06:27 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:06:27 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:06:27 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:06:27 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:06:27 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:06:27 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:06:27 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:06:27 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:06:27 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:06:27 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:06:27 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:06:27 오후] testOpenSession()
+[DEBUG] [2019-08-29 16:06:27 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@3c87e1bd
+[DEBUG] [2019-08-29 16:13:21 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:13:22 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:13:22 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:13:22 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:13:22 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:13:22 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:13:22 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:13:22 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:13:22 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:13:22 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:13:22 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:13:22 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:15:25 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:15:26 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:15:26 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:15:26 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:15:26 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:15:26 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:15:26 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:15:26 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:15:26 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:15:26 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:15:26 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:15:26 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:16:59 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:17:00 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:17:00 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:17:00 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:17:00 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:17:00 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:17:00 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:17:00 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:17:00 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:17:00 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:17:00 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:17:00 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 16:17:00 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 16:17:00 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 16:17:00 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 16:17:00 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:17:00 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 16:17:00 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 16:17:00 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 16:17:00 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:17:00 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 16:17:00 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 16:17:00 오후] <==      Total: 8
+[DEBUG] [2019-08-29 16:17:00 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 16:17:00 오후] testOpenSession()
+[DEBUG] [2019-08-29 16:17:00 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@2564094e
+[DEBUG] [2019-08-29 16:23:15 오후] ==>  Preparing: call proc_saledetail_orderby_saleprice() 
+[DEBUG] [2019-08-29 16:23:15 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:23:15 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:23:15 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:23:18 오후] ==>  Preparing: call proc_saledetail_orderby_marginprice() 
+[DEBUG] [2019-08-29 16:23:18 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:23:18 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:23:18 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:23:35 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:23:35 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:23:35 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:23:43 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:23:43 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:23:43 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:24:33 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:24:33 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:24:33 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:28:12 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:28:12 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:28:12 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:28:45 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:28:45 오후] <==    Columns: (select count(*)+1 from sale_detail where margin_price > d.margin_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:28:45 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:29:56 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:29:56 오후] <==    Columns: (select count(*)+1 from sale_detail where sale_price > d.sale_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:29:56 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:29:57 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:29:57 오후] <==    Columns: (select count(*)+1 from sale_detail where margin_price > d.margin_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:29:57 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:30:02 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:30:02 오후] <==    Columns: (select count(*)+1 from sale_detail where margin_price > d.margin_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:30:02 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:30:54 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:30:54 오후] <==    Columns: (select count(*)+1 from sale_detail where sale_price > d.sale_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:30:54 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:30:54 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:30:54 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:30:54 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:30:54 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:30:54 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:30:54 오후] ==> Parameters: 
+[DEBUG] [2019-08-29 16:30:55 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:30:55 오후] <==    Columns: (select count(*)+1 from sale_detail where margin_price > d.margin_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:30:55 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:30:55 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:30:55 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:30:55 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:30:55 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:30:55 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:30:55 오후] ==> Parameters: 
+[DEBUG] [2019-08-29 16:31:15 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:31:15 오후] <==    Columns: (select count(*)+1 from sale_detail where sale_price > d.sale_price), product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:31:15 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:31:15 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:31:15 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:31:15 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:31:15 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:31:15 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:31:15 오후] ==> Parameters: 
+[DEBUG] [2019-08-29 16:31:57 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[DEBUG] [2019-08-29 16:31:57 오후] <==      Total: 0
+[DEBUG] [2019-08-29 16:31:57 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:31:57 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:31:57 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:31:57 오후] <==        Row: null, null, null, null
+[DEBUG] [2019-08-29 16:31:57 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:31:57 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:32:32 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[DEBUG] [2019-08-29 16:32:32 오후] <==      Total: 0
+[DEBUG] [2019-08-29 16:32:32 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:32:32 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:32:32 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:32:32 오후] <==        Row: null, null, null, null
+[DEBUG] [2019-08-29 16:32:32 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:32:32 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:33:59 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:33:59 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:33:59 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:33:59 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:33:59 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:33:59 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:33:59 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:33:59 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:33:59 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:33:59 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:33:59 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:33:59 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:33:59 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:34:13 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:34:13 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:34:13 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[DEBUG] [2019-08-29 16:34:37 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:34:37 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:34:37 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:34:37 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:34:37 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:34:37 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:34:37 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:34:37 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:34:38 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:34:38 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:34:38 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:34:38 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:34:38 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:34:58 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:34:58 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:34:58 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:34:58 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:34:58 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:34:58 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:34:58 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:34:58 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:34:58 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:34:58 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:34:58 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:34:58 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:34:58 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:35:16 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:35:17 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:35:17 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:17 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:17 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=2, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=3, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=3, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:17 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:35:17 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:35:17 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:17 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:17 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=3, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=3, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:17 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:35:17 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:35:17 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:35:17 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:35:17 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:17 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 16:35:17 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 16:35:17 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 16:35:17 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 16:35:17 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:35:17 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 16:35:17 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 16:35:17 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 16:35:17 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:35:17 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 16:35:17 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 16:35:17 오후] <==      Total: 8
+[DEBUG] [2019-08-29 16:35:17 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 16:35:45 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:35:46 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:35:46 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:35:46 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:35:46 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:46 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:35:46 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:35:46 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:46 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:46 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=2, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=3, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=3, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:46 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:35:46 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:35:46 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:46 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:46 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:46 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=3, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=3, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:55 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:35:55 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:35:55 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:35:55 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:35:55 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:55 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:35:55 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:35:55 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:55 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:55 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=2, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=3, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=3, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:55 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:35:55 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:35:55 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:35:55 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:35:55 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=3, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=3, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:35:55 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 16:35:55 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 16:35:55 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:35:55 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 16:35:55 오후] <==      Total: 8
+[DEBUG] [2019-08-29 16:35:55 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 16:35:55 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 16:35:55 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 16:35:55 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 16:35:55 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:35:55 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 16:35:55 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:35:55 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 16:35:55 오후] testOpenSession()
+[DEBUG] [2019-08-29 16:35:55 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@793be5ca
+[DEBUG] [2019-08-29 16:40:36 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:40:36 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:40:36 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:40:36 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:40:36 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:40:36 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:40:36 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:40:36 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:40:36 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:40:36 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:40:36 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:40:36 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:40:36 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:40:44 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:40:44 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:40:44 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:40:44 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:40:44 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:40:44 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:40:44 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:40:44 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:40:44 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:40:44 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:40:44 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:40:44 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:40:44 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:40:55 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:40:55 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:40:55 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:40:55 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:40:55 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:40:55 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:40:55 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:40:55 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:40:55 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:40:55 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:40:55 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:40:55 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:40:55 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:44:57 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 16:44:57 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:44:57 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:44:57 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=2, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=3, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=3, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:44:57 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:44:57 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=3, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=3, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 16:44:57 오후] test04SelectSumProc()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:44:57 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:44:57 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 16:44:57 오후] Sale [no=0, productCode=null, price=0, saleCnt=0, marginrate=0, saleDetail=SaleDetail [no=0, salePrice=2980000, addTax=270910, supplyPrice=2709090, marginPrice=323027], product=null]
+[DEBUG] [2019-08-29 16:44:57 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 16:44:57 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 8
+[DEBUG] [2019-08-29 16:44:57 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 16:44:57 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 16:44:57 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 16:44:57 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 16:44:57 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 16:44:57 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 16:44:57 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:44:57 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 16:44:57 오후] testOpenSession()
+[DEBUG] [2019-08-29 16:44:57 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@33990a0c
+[DEBUG] [2019-08-29 16:49:52 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 16:49:52 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 16:49:52 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 16:49:52 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 16:49:52 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 16:49:52 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 16:49:52 오후] <==      Total: 4
+[DEBUG] [2019-08-29 16:49:52 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 16:49:52 오후] ==> Parameters: 
+[TRACE] [2019-08-29 16:49:52 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 16:49:52 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 16:49:52 오후] <==      Total: 1
+[DEBUG] [2019-08-29 16:49:52 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:03:58 오후] test01SelectSaleByAll()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Preparing: select * from sale; 
+[DEBUG] [2019-08-29 17:03:59 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: no, product_code, price, saleCnt, marginrate
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 1, A001, 4500, 150, 10
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 2, A002, 3800, 140, 15
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 3, B001, 5200, 250, 12
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 4, B002, 4300, 110, 11
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 4
+[DEBUG] [2019-08-29 17:03:59 오후] test02SelectSaleProc()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 4
+[DEBUG] [2019-08-29 17:03:59 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=2, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=3, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=3, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 17:03:59 오후] test03SelectMarginProc()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 4
+[DEBUG] [2019-08-29 17:03:59 오후] [Sale [no=1, productCode=B001, price=5200, saleCnt=250, marginrate=12, saleDetail=SaleDetail [no=1, salePrice=1300000, addTax=118182, supplyPrice=1181818, marginPrice=141818], product=Product [productCode=B001, productName=딸기쉐이크]], Sale [no=2, productCode=A002, price=3800, saleCnt=140, marginrate=15, saleDetail=SaleDetail [no=2, salePrice=532000, addTax=48364, supplyPrice=483636, marginPrice=72545], product=Product [productCode=A002, productName=카푸치노]], Sale [no=3, productCode=A001, price=4500, saleCnt=150, marginrate=10, saleDetail=SaleDetail [no=3, salePrice=675000, addTax=61364, supplyPrice=613636, marginPrice=61364], product=Product [productCode=A001, productName=아메리카노]], Sale [no=4, productCode=B002, price=4300, saleCnt=110, marginrate=11, saleDetail=SaleDetail [no=4, salePrice=473000, addTax=43000, supplyPrice=430000, marginPrice=47300], product=Product [productCode=B002, productName=후르츠와인]]]
+[DEBUG] [2019-08-29 17:03:59 오후] test04SelectSumProc()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:03:59 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: 2980000, 270910, 2709090, 323027
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:03:59 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:03:59 오후] Sale [no=0, productCode=null, price=0, saleCnt=0, marginrate=0, saleDetail=SaleDetail [no=0, salePrice=2980000, addTax=270910, supplyPrice=2709090, marginPrice=323027], product=null]
+[DEBUG] [2019-08-29 17:03:59 오후] test01SelectProductByAll()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Preparing: select * from product; 
+[DEBUG] [2019-08-29 17:03:59 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: A001, 아메리카노
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: A002, 카푸치노
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: A003, 헤이즐넛
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: A004, 에스프레소
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: B001, 딸기쉐이크
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: B002, 후르츠와인
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: B003, 팥빙수
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: B004, 아이스초코
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 8
+[DEBUG] [2019-08-29 17:03:59 오후] [Product [productCode=A001, productName=아메리카노], Product [productCode=A002, productName=카푸치노], Product [productCode=A003, productName=헤이즐넛], Product [productCode=A004, productName=에스프레소], Product [productCode=B001, productName=딸기쉐이크], Product [productCode=B002, productName=후르츠와인], Product [productCode=B003, productName=팥빙수], Product [productCode=B004, productName=아이스초코]]
+[DEBUG] [2019-08-29 17:03:59 오후] test02SelectProductByCode()
+[DEBUG] [2019-08-29 17:03:59 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 17:03:59 오후] ==> Parameters: A002(String)
+[TRACE] [2019-08-29 17:03:59 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 17:03:59 오후] <==        Row: A002, 카푸치노
+[DEBUG] [2019-08-29 17:03:59 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:03:59 오후] Product [productCode=A002, productName=카푸치노]
+[DEBUG] [2019-08-29 17:03:59 오후] testOpenSession()
+[DEBUG] [2019-08-29 17:03:59 오후] session org.apache.ibatis.session.defaults.DefaultSqlSession@6c82aba5
+[DEBUG] [2019-08-29 17:09:48 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 17:09:48 오후] ==> Parameters: A001(String)
+[TRACE] [2019-08-29 17:09:48 오후] <==    Columns: product_code, product_name
+[TRACE] [2019-08-29 17:09:48 오후] <==        Row: A001, 아메리카노
+[DEBUG] [2019-08-29 17:09:48 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:09:50 오후] ==>  Preparing: INSERT INTO ncs_product.sale (product_code, price, saleCnt, marginrate) VALUES(?, ?, ?, ?); 
+[DEBUG] [2019-08-29 17:09:50 오후] ==> Parameters: A001(String), 1234(Integer), 123(Integer), 10(Integer)
+[DEBUG] [2019-08-29 17:09:50 오후] <==    Updates: 1
+[DEBUG] [2019-08-29 17:10:44 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 17:10:44 오후] ==> Parameters: asd(String)
+[DEBUG] [2019-08-29 17:10:44 오후] <==      Total: 0
+[DEBUG] [2019-08-29 17:11:53 오후] ==>  Preparing: select * from product where product_code=? 
+[DEBUG] [2019-08-29 17:11:53 오후] ==> Parameters: sadas(String)
+[DEBUG] [2019-08-29 17:11:53 오후] <==      Total: 0
+[DEBUG] [2019-08-29 17:24:54 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:24:54 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:24:54 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:24:54 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:24:54 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:24:54 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:24:54 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:24:54 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:24:54 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:25:21 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:25:21 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:25:21 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:25:21 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:25:21 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:25:21 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:25:21 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:25:21 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:25:21 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:25:24 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:25:24 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:25:24 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:25:24 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:25:24 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:25:24 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:25:24 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:25:24 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:25:24 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:25:35 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:25:35 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:25:35 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:25:35 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:25:35 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:25:35 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:25:35 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:25:35 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:25:35 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:27:06 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:27:06 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:27:06 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:27:06 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:27:06 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:27:06 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:27:06 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:27:06 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:27:06 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:29:15 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:29:15 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:29:15 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:29:15 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:29:15 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:29:15 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:29:15 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:29:15 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:29:15 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:30:46 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:30:46 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:30:46 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:30:46 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:30:46 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:30:46 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:30:46 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:30:46 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:30:46 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:30:56 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:30:56 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:30:56 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:30:56 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:30:56 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:30:56 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:30:56 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:30:56 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:30:56 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:31:11 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:31:11 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:31:11 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:31:11 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:31:11 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:31:11 오후] <==    Columns: sale_price, addTax, supply_price, margin_price
+[TRACE] [2019-08-29 17:31:11 오후] <==        Row: 3131782, 284709, 2847073, 336825
+[DEBUG] [2019-08-29 17:31:11 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:31:11 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:31:59 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:31:59 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:31:59 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:31:59 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:31:59 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:31:59 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:31:59 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:31:59 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:31:59 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:32:01 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:32:01 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:32:01 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:32:01 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:32:01 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:32:01 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:32:01 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:32:01 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:32:01 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:32:09 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:32:09 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:32:09 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:32:09 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:32:09 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:32:09 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:32:09 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:32:09 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:32:09 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:32:11 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:32:11 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:32:11 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:32:11 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:32:11 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:32:11 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:32:11 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:32:11 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:32:11 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:32:16 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:32:16 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:32:16 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:32:16 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:32:16 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:32:16 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:32:16 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:32:16 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:32:16 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:32:56 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:32:56 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:32:56 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:32:56 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:32:56 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:32:56 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:32:56 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:32:56 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:32:56 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:33:37 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:33:37 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:33:37 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:33:37 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:33:37 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:33:37 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:33:37 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:33:37 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:33:37 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:33:49 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:33:49 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:33:49 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:33:49 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:33:49 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:33:49 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:33:49 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:33:49 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:33:49 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:34:30 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:34:30 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:34:30 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:34:30 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:34:30 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:34:30 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:34:30 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:34:30 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:34:30 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:34:31 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:34:31 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:34:31 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:34:31 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:34:31 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:34:31 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:34:31 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:34:31 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:34:31 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:34:33 오후] ==>  Executing: call proc_saledetail_orderby_marginprice() 
+[TRACE] [2019-08-29 17:34:33 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 2, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 3, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:34:33 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:34:33 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:34:33 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:34:33 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:34:33 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:34:33 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:34:33 오후] <==    Updates: 0
+[DEBUG] [2019-08-29 17:34:35 오후] ==>  Executing: call proc_saledetail_orderby_saleprice() 
+[TRACE] [2019-08-29 17:34:35 오후] <==    Columns: no, product_code, product_name, price, saleCnt, sale_price, addTax, supply_price, marginrate, margin_price
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 1, B001, 딸기쉐이크, 5200, 250, 1300000, 118182, 1181818, 12, 141818
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 2, A001, 아메리카노, 4500, 150, 675000, 61364, 613636, 10, 61364
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 3, A002, 카푸치노, 3800, 140, 532000, 48364, 483636, 15, 72545
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 4, B002, 후르츠와인, 4300, 110, 473000, 43000, 430000, 11, 47300
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 5, A001, 아메리카노, 1234, 123, 151782, 13799, 137983, 10, 13798
+[DEBUG] [2019-08-29 17:34:35 오후] <==      Total: 5
+[DEBUG] [2019-08-29 17:34:35 오후] ==>  Preparing: call proc_sum() 
+[DEBUG] [2019-08-29 17:34:35 오후] ==> Parameters: 
+[TRACE] [2019-08-29 17:34:35 오후] <==    Columns: no, price, saleCnt, addTax, supply_price, sale_price, margin_price
+[TRACE] [2019-08-29 17:34:35 오후] <==        Row: 5, 19034, 773, 284709, 2847073, 3131782, 336825
+[DEBUG] [2019-08-29 17:34:35 오후] <==      Total: 1
+[DEBUG] [2019-08-29 17:34:35 오후] <==    Updates: 0

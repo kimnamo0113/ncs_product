@@ -5,11 +5,15 @@ import java.util.List;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import ncs.exam.AbstractTest;
 import ncs.exam.dto.Product;
 
+
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductMapperTest extends AbstractTest{
 	private static ProductMapper productDao;
 	

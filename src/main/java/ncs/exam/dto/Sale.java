@@ -76,15 +76,9 @@ public class Sale {
 		return "Sale [no=" + no + ", productCode=" + productCode + ", price=" + price + ", saleCnt=" + saleCnt
 				+ ", marginrate=" + marginrate + ", saleDetail=" + saleDetail + ", product=" + product + "]";
 	}
-	//	private int no;
-//	private String productCode;
-//	private int price;
-//	private int saleCnt;
-//	private int marginrate;
-//	private SaleDetail saleDetail;
 	public Object[] toArray() {
 		DecimalFormat df=new DecimalFormat("###,###");
-		return new Object[] { no,productCode,product.getProductName(),price,saleCnt,saleDetail.getSupplyPrice(),saleDetail.getAddTax(),saleDetail.getSalePrice(),marginrate,saleDetail.getMarginPrice()};
+		return new Object[] { no,productCode,product.getProductName(),df.format(price),df.format(saleCnt),df.format(saleDetail.getSupplyPrice()),df.format(saleDetail.getAddTax()),df.format(saleDetail.getSalePrice()),df.format(marginrate),df.format(saleDetail.getMarginPrice())};
 	}
 	
 }

@@ -3,6 +3,7 @@ package ncs.exam.frame;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Panel;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.swing.JFrame;
@@ -74,11 +75,13 @@ public class OutPutPanelTable extends JFrame {
 	}
 	
 	protected void setSumColumn(Sale sale) {
+		DecimalFormat df=new DecimalFormat("###,###");
+		columns[0]=sale.getNo()+"";
 		columns[4]=sale.getSaleCnt()+"";
-		columns[5]=sale.getSaleDetail().getSupplyPrice()+"";
-		columns[6]=sale.getSaleDetail().getAddTax()+"";
-		columns[7]=sale.getSaleDetail().getSalePrice()+"";
-		columns[9]=sale.getSaleDetail().getMarginPrice()+"";
+		columns[5]=df.format(sale.getSaleDetail().getSupplyPrice())+"";
+		columns[6]=df.format(sale.getSaleDetail().getAddTax())+"";
+		columns[7]=df.format(sale.getSaleDetail().getSalePrice())+"";
+		columns[9]=df.format(sale.getSaleDetail().getMarginPrice())+"";
 		
 		model=new DefaultTableModel(null,columns);
 		

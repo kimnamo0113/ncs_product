@@ -17,6 +17,7 @@ import ncs.exam.dto.Sale;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -40,14 +41,8 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 	private JButton btnPrint2;
 	SaleMapper saleDao = SaleMapperImpl.getInstance();
 	ProductMapper proDao = ProductMapperImpl.getInstance();
-	/**
-	 * Launch the application.
-	 */
 	
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public FrameInputForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -154,6 +149,7 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 		
 		saleDao.insertSale(getSaleTf());
 		clearTf();
+		JOptionPane.showMessageDialog(null, "상품이 추가되었습니다.");
 	}
 	protected void actionPerformedBtnPrint1(ActionEvent e) {
 		OutPutPanelTable frame = new OutPutPanelTable();
@@ -198,7 +194,10 @@ public class FrameInputForm extends JFrame implements ActionListener, KeyListene
 		if (e.getSource() == tfCode) {
 			if (e.getKeyCode() == KeyEvent.VK_ENTER) { //enter event
 				Product pro=proDao.selectProductByCode(tfCode.getText());
-				tfName.setText(pro.getProductName());
+				if(pro!=null)
+					tfName.setText(pro.getProductName());
+				else
+					JOptionPane.showMessageDialog(null, "상품이없습니다.");
 			}
 		}
 	}

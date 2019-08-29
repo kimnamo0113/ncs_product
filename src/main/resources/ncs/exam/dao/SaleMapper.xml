@@ -8,9 +8,19 @@
 		<result property="price" column="price" />
 		<result property="saleCnt" column="saleCnt" />
 		<result property="marginrate" column="marginrate" />
-		<association property="saleDetail" resultMap="ncs.exam.dao.SaleDetailMapper.basicSaleDetail"/>
+		<association property="saleDetail" resultMap="basicSaleDetail"/>
 		<association property="product" resultMap="ncs.exam.dao.ProductMapper.basicProduct" />
 	</resultMap>
+	
+	
+	<resultMap type="SaleDetail" id="basicSaleDetail">
+		<result property="no" column="no" />
+		<result property="salePrice" column="sale_price" />
+		<result property="addTax" column="addTax" />
+		<result property="supplyPrice" column="supply_price" />
+		<result property="marginPrice" column="margin_price" />
+	</resultMap>
+	
 	
 	<insert id="insertSale">
 		INSERT INTO ncs_product.sale
